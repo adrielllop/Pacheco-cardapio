@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pacheco Panificadora - Cardápio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== SEU CSS ATUAL (mantido) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary-gold: #D4A853;
+            --dark-gold: #B8860B;
+            --light-gold: #F4E4BC;
+            --dark-bg: #1a1a1a;
+            --darker-bg: #0f0f0f;
+            --text-light: #f5f5f5;
+            --text-muted: #888;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--darker-bg);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 20% 50%, rgba(212, 168, 83, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            background: linear-gradient(180deg, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border-bottom: 3px solid var(--primary-gold);
+        }
+        .logo-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--light-gold) 50%, var(--primary-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+        .tab-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-bottom: 1px solid rgba(212, 168, 83, 0.2);
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: var(--primary-gold);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .tab-btn:hover {
+            background: rgba(212, 168, 83, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 168, 83, 0.3);
+        }
+        .tab-btn.active {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(212, 168, 83, 0.5);
+        }
+        .tab-icon {
+            margin-right: 0.5rem;
+        }
+        .content {
+            position: relative;
+            z-index: 5;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .section-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            display: inline-block;
+            padding: 0 2rem;
+            background: var(--darker-bg);
+            position: relative;
+            z-index: 2;
+        }
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+            z-index: 1;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .menu-item {
+            background: linear-gradient(145deg, rgba(26, 26, 26, 0.9) 0%, rgba(40, 40, 40, 0.9) 100%);
+            border: 1px solid rgba(212, 168, 83, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--dark-gold), var(--primary-gold));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+            box-shadow: 0 10px 40px rgba(212, 168, 83, 0.2);
+        }
+        .menu-item:hover::before {
+            transform: scaleX(1);
+        }
+        .item-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            background: #2a2a2a;
+        }
+        .item-image-placeholder {
+            width: 100%;
+            height: 180px;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            background: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border: 2px dashed var(--text-muted);
+        }
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        .item-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-light);
+            flex: 1;
+            margin-right: 1rem;
+        }
+        .item-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            white-space: nowrap;
+        }
+        .item-price.consultar {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-style: italic;
+        }
+        .item-description {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-top: 0.5rem;
+        }
+        .special-item {
+            background: linear-gradient(145deg, rgba(212, 168, 83, 0.1) 0%, rgba(26, 26, 26, 0.9) 100%);
+            border: 2px solid var(--primary-gold);
+        }
+        .special-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 5;
+        }
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(15, 15, 15, 0.8) 100%);
+            border-top: 1px solid rgba(212, 168, 83, 0.2);
+            margin-top: 4rem;
+        }
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .footer-highlight {
+            color: var(--primary-gold);
+            font-weight: 600;
+        }
+        .boas-vindas {
+            text-align: center;
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin: 1rem 0 0;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .tabs {
+                flex-direction: column;
+            }
+            .tab-btn {
+                width: 100%;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <header id="header">
+        <div class="logo-icon">🥖</div>
+        <h1 id="nomePadaria">Pacheco Panificadora</h1>
+        <p class="subtitle" id="enderecoPadaria">Tradição & Sabor</p>
+        <p class="boas-vindas" id="mensagemBoasVindas"></p>
+    </header>
+
+    <div class="tab-container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="comidas">
+                <span class="tab-icon">🍔</span>Comidas
+            </button>
+            <button class="tab-btn" data-tab="bebidas">
+                <span class="tab-icon">☕</span>Bebidas
+            </button>
+        </div>
+    </div>
+
+    <div class="content" id="content">
+        <div id="comidas" class="tab-content active"></div>
+        <div id="bebidas" class="tab-content"></div>
+    </div>
+
+    <footer>
+        <p class="footer-text">
+            <span class="footer-highlight" id="footerNome">Pacheco Panificadora</span>
+            <span id="footerEndereco"></span> •
+            <span id="footerWhatsapp"></span>
+        </p>
+        <p class="footer-text" style="margin-top:0.5rem; font-size:0.8rem;">Tradição em cada pedaço 🥖</p>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js">
+    </script>
+
+    <script>
+        // ===== CONFIGURAÇÃO DO FIREBASE (com suas credenciais) =====
+        const firebaseConfig = {
+            apiKey: "AIzaSyBTS7jExQYt4FJJfW__y7airnXCPoqCKOI",
+            authDomain: "pacheco-591ed.firebaseapp.com",
+            projectId: "pacheco-591ed",
+            storageBucket: "pacheco-591ed.firebasestorage.app",
+            messagingSenderId: "468956071001",
+            appId: "1:468956071001:web:dd997e14b8c8070f211d48",
+            measurementId: "G-764DN5LGP2"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // ===== VARIÁVEIS =====
+        let produtos = [];
+
+        // ===== REFERÊNCIAS DOM =====
+        const headerNome = document.getElementById('nomePadaria');
+        const headerEndereco = document.getElementById('enderecoPadaria');
+        const msgBoasVindas = document.getElementById('mensagemBoasVindas');
+        const footerNome = document.getElementById('footerNome');
+        const footerEndereco = document.getElementById('footerEndereco');
+        const footerWhatsapp = document.getElementById('footerWhatsapp');
+
+        const comidasContainer = document.getElementById('comidas');
+        const bebidasContainer = document.getElementById('bebidas');
+
+        // ===== CARREGAR CONFIGURAÇÕES =====
+        async function carregarConfiguracoes() {
+            try {
+                const doc = await db.collection('config').doc('configuracoes').get();
+                if (doc.exists) {
+                    const data = doc.data();
+                    headerNome.textContent = data.nomePadaria || 'Pacheco Panificadora';
+                    headerEndereco.textContent = data.endereco || 'Tradição & Sabor';
+                    msgBoasVindas.textContent = data.mensagemBoasVindas || '';
+                    footerNome.textContent = data.nomePadaria || 'Pacheco Panificadora';
+                    footerEndereco.textContent = data.endereco ? `• ${data.endereco}` : '';
+                    footerWhatsapp.textContent = data.whatsapp ? `• ${data.whatsapp}` : '';
+                }
+            } catch (err) {
+                console.error('Erro ao carregar configurações:', err);
+            }
+        }
+
+        // ===== RENDERIZAR PRODUTOS =====
+        function renderizarProdutos() {
+            comidasContainer.innerHTML = '';
+            bebidasContainer.innerHTML = '';
+
+            const comidas = produtos.filter(p => p.categoria === 'comidas');
+            const bebidas = produtos.filter(p => p.categoria === 'bebidas');
+
+            function criarGrid(items, container) {
+                if (items.length === 0) {
+                    container.innerHTML = `<p style="text-align:center;color:var(--text-muted);padding:2rem;">Nenhum produto nesta categoria.</p>`;
+                    return;
+                }
+                items.sort((a, b) => (b.destaque ? 1 : 0) - (a.destaque ? 1 : 0));
+
+                const grid = document.createElement('div');
+                grid.className = 'menu-grid';
+
+                items.forEach(prod => {
+                    const div = document.createElement('div');
+                    div.className = `menu-item ${prod.destaque ? 'special-item' : ''}`;
+
+                    if (prod.destaque) {
+                        const badge = document.createElement('span');
+                        badge.className = 'special-badge';
+                        badge.textContent = 'Destaque';
+                        div.appendChild(badge);
+                    }
+
+                    // Imagem via URL
+                    const imgWrapper = document.createElement('div');
+                    if (prod.imagemURL && prod.imagemURL.trim() !== '') {
+                        const img = document.createElement('img');
+                        img.src = prod.imagemURL;
+                        img.alt = prod.nome;
+                        img.className = 'item-image';
+                        img.onerror = () => { img.style.display = 'none';
+                            imgWrapper.appendChild(criarPlaceholder()); };
+                        imgWrapper.appendChild(img);
+                    } else {
+                        imgWrapper.appendChild(criarPlaceholder());
+                    }
+                    div.appendChild(imgWrapper);
+
+                    // Header (nome + preço)
+                    const header = document.createElement('div');
+                    header.className = 'item-header';
+
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = 'item-name';
+                    nameSpan.textContent = prod.nome;
+
+                    const priceSpan = document.createElement('span');
+                    priceSpan.className = `item-price ${!prod.preco || prod.preco.trim() === '' ? 'consultar' : ''}`;
+                    priceSpan.textContent = prod.preco && prod.preco.trim() !== '' ? `R$ ${prod.preco}` : 'Consultar';
+
+                    header.appendChild(nameSpan);
+                    header.appendChild(priceSpan);
+                    div.appendChild(header);
+
+                    if (prod.descricao) {
+                        const desc = document.createElement('p');
+                        desc.className = 'item-description';
+                        desc.textContent = prod.descricao;
+                        div.appendChild(desc);
+                    }
+
+                    grid.appendChild(div);
+                });
+
+                container.appendChild(grid);
+            }
+
+            function criarPlaceholder() {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'item-image-placeholder';
+                placeholder.textContent = '📷 Sem foto';
+                return placeholder;
+            }
+
+            // Adiciona cabeçalhos e grids
+            const headerComidas = document.createElement('div');
+            headerComidas.className = 'section-header';
+            headerComidas.innerHTML = '<h2>🥪 Lanches & Refeições</h2>';
+            comidasContainer.appendChild(headerComidas);
+            criarGrid(comidas, comidasContainer);
+
+            const headerBebidas = document.createElement('div');
+            headerBebidas.className = 'section-header';
+            headerBebidas.innerHTML = '<h2>☕ Bebidas</h2>';
+            bebidasContainer.appendChild(headerBebidas);
+            criarGrid(bebidas, bebidasContainer);
+        }
+
+        // ===== CARREGAR PRODUTOS EM TEMPO REAL =====
+        function carregarProdutos() {
+            db.collection('produtos')
+                .orderBy('createdAt', 'desc')
+                .onSnapshot((snapshot) => {
+                    produtos = [];
+                    snapshot.forEach(doc => {
+                        produtos.push({ id: doc.id, ...doc.data() });
+                    });
+                    renderizarProdutos();
+                }, (err) => {
+                    console.error('Erro ao carregar produtos:', err);
+                });
+        }
+
+        // ===== INICIALIZAÇÃO =====
+        carregarConfiguracoes();
+        carregarProdutos();
+
+        // ===== TABS =====
+        const tabs = document.querySelectorAll('.tab-btn');
+        tabs.forEach(btn => {
+            btn.addEventListener('click', function() {
+                tabs.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const target = this.dataset.tab;
+                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+                document.getElementById(target).classList.add('active');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>

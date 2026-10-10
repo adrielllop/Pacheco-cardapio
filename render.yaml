@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: pacheco-panificadora-cardapio
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    autoDeploy: true

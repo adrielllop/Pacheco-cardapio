@@ -4,30 +4,21 @@ Site estático pronto para publicar no GitHub e no Render.
 
 ## Publicar no Render
 
-1. Crie um repositório no GitHub e envie **todos os arquivos desta pasta para a raiz do repositório**.
+1. Envie todos os arquivos desta pasta para a raiz do repositório no GitHub.
 2. No Render, escolha **New → Static Site** e conecte o repositório.
-3. Use estas configurações:
-   - **Build Command:** deixe vazio
-   - **Publish Directory:** `.`
-4. Confirme o deploy.
+3. Deixe **Build Command** vazio e use `.` como **Publish Directory**.
 
-## Fotos dos produtos
+## Atualização v2
 
-As **43 fotos recebidas** já estão na raiz do projeto, numeradas de `01_` a `43_`, e foram ligadas ao produto correspondente no cardápio. A numeração segue o ZIP original:
+As 43 imagens da versão v2 já estão na raiz, numeradas de `01_` a `43_`, e ligadas aos produtos correspondentes. O layout foi reorganizado com categorias completas em cada aba. Na aba **Comidas & lanches**, os produtos aparecem em **Mistos da casa**, **Pães e lanches**, **Ovos e omeletes**, **Quitandas do dia** e **Adicionais da casa**. Na aba **Cafés & bebidas**, aparecem **Cafés da casa**, **Sucos naturais** e **Cappuccinos especiais**.
 
-- `01` a `19`: comidas, lanches e mistos especiais.
-- `20` a `27`: adicionais.
-- `28` a `37`: cafés e sucos.
-- `38` a `43`: cappuccinos, chantilly e canela.
-
-Para trocar uma foto depois, mantenha o mesmo nome do arquivo ou atualize o atributo `data-image` no card correspondente em `index.html` e a lista de imagens em `script.js`.
+As Quitandas agora ficam em sua própria categoria, antes dos adicionais. As opções pequenas em formato de lista foram removidas: todos os itens aparecem em cards maiores com foto, nome e preço.
 
 ## Arquivos principais
 
-- `index.html` — estrutura, textos, cardápio, preços e associação dos cards.
+- `index.html` — estrutura, textos, categorias, preços e associação dos cards.
 - `styles.css` — visual responsivo, tema claro/escuro e estilos das fotos.
-- `script.js` — abas, troca de tema, rolagem suave e carregamento das 43 fotos.
-- `01_*.jpg` até `43_*.jpg` — fotos dos produtos recebidas.
+- `script.js` — abas, troca de tema, rolagem suave e carregamento das fotos.
+- `01_*.jpg` até `43_*.jpg` — fotos v2 dos produtos.
 - `logo.jpg` — logo/identidade enviada.
-- `cardapio-comidas.jpg` e `cardapio-cafes.jpg` — referências originais do cardápio.
 - `render.yaml` — configuração opcional para o Render.

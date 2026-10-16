@@ -6,7 +6,7 @@ function setTheme(theme) {
   root.dataset.theme = theme;
   const dark = theme === 'dark';
   themeToggle?.setAttribute('aria-pressed', String(dark));
-  if (themeToggle) themeToggle.innerHTML = dark ? '<span class="sun">☼</span>' : '<span class="moon">☾</span>';
+  themeToggle?.classList.toggle('is-dark', dark);
   localStorage.setItem('pacheco-theme', theme);
 }
 themeToggle?.addEventListener('click', () => setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'));

@@ -52,18 +52,56 @@
 
     <section class="marquee" aria-label="Especialidades"><div>CAFÉ PASSADO NA HORA <i></i> PÃES QUENTINHOS <i></i> SABOR DE CASA <i></i> CAFÉ PASSADO NA HORA <i></i> PÃES QUENTINHOS</div></section>
 
+    <section class="favorites section-wrap" aria-labelledby="favorites-title">
+      <div class="favorites-heading">
+        <div><p class="eyebrow"><span></span> Escolhas da casa</p><h2 id="favorites-title">Os favoritos <em>da Pacheco</em></h2></div>
+        <p class="section-intro">Dois lanches que traduzem o sabor da nossa padaria e fazem parte dos pedidos mais queridos da casa.</p>
+      </div>
+      <div class="favorites-grid">
+        <article class="favorite-card favorite-card-main">
+          <div class="favorite-photo"><img src="04_Misto_Completo.jpg" alt="Misto completo" /></div>
+          <div class="favorite-content"><p class="favorite-label">Favorito 01</p><div class="favorite-title-row"><h3>Misto completo</h3><strong>R$ 19,90</strong></div><p>Pão francês, mussarela, presunto, tomate, alface, ovo e bacon.</p><span class="favorite-note">Preparado na hora</span></div>
+        </article>
+        <article class="favorite-card favorite-card-secondary">
+          <div class="favorite-photo"><img src="03_Misto_Simples.jpg" alt="Misto simples" /></div>
+          <div class="favorite-content"><p class="favorite-label">Favorito 02</p><div class="favorite-title-row"><h3>Misto simples</h3><strong>R$ 14,90</strong></div><p>Pão francês, ovo, mussarela e presunto.</p><span class="favorite-note">Sabor tradicional</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="my-favorites section-wrap" id="meus-favoritos" aria-labelledby="my-favorites-title" hidden>
+      <div class="my-favorites-heading"><div><p class="eyebrow"><span></span> Salvos neste navegador</p><h2 id="my-favorites-title">Meus <em>favoritos</em></h2></div><p class="section-intro">Produtos que você marcou para consultar depois. Esta lista é pessoal e não envia pedidos.</p></div>
+      <div class="my-favorites-grid" id="my-favorites-grid"></div>
+    </section>
+
     <section class="menu section-wrap" id="cardapio">
       <div class="section-heading">
         <div><p class="eyebrow"><span></span> Escolha seu momento</p><h2>Cardápio <em>da casa</em></h2></div>
         <p class="section-intro">Do primeiro café do dia ao lanche da tarde, tem sempre uma boa pedida esperando por você.</p>
       </div>
+      <div class="menu-tools" aria-label="Ferramentas do cardápio">
+        <label class="search-box" for="product-search"><span class="search-mark" aria-hidden="true"></span><input id="product-search" type="search" placeholder="Buscar produto ou ingrediente" autocomplete="off" /></label>
+        <div class="sort-box"><label for="product-sort">Ordenar</label><select id="product-sort"><option value="default">Recomendados</option><option value="name">A–Z</option><option value="price-asc">Menor preço</option><option value="price-desc">Maior preço</option></select></div>
+      </div>
+      <nav class="category-bar" aria-label="Navegação rápida por categoria">
+        <button type="button" class="category-chip active" data-jump="categoria-mistos" data-tab-target="comidas">Mistos</button>
+        <button type="button" class="category-chip" data-jump="categoria-paes" data-tab-target="comidas">Pães e lanches</button>
+        <button type="button" class="category-chip" data-jump="categoria-ovos" data-tab-target="comidas">Ovos</button>
+        <button type="button" class="category-chip" data-jump="categoria-quitandas" data-tab-target="comidas">Quitandas</button>
+        <button type="button" class="category-chip" data-jump="categoria-adicionais" data-tab-target="comidas">Adicionais</button>
+        <button type="button" class="category-chip" data-jump="categoria-cafes" data-tab-target="bebidas">Cafés</button>
+        <button type="button" class="category-chip" data-jump="categoria-sucos" data-tab-target="bebidas">Sucos</button>
+        <button type="button" class="category-chip" data-jump="categoria-cappuccinos" data-tab-target="bebidas">Cappuccinos</button>
+      </nav>
+      <p class="search-summary" id="search-summary" role="status" aria-live="polite"></p>
+      <div class="search-empty" id="search-empty" hidden><strong>Nenhum produto encontrado</strong><span>Tente outro nome ou ingrediente.</span><button type="button" id="clear-search">Limpar pesquisa</button></div>
       <div class="tabs" role="tablist" aria-label="Categorias do cardápio">
         <button class="tab active" type="button" role="tab" aria-selected="true" data-tab="comidas">Comidas & lanches</button>
         <button class="tab" type="button" role="tab" aria-selected="false" data-tab="bebidas">Cafés & bebidas</button>
       </div>
 
       <div class="menu-panel active" id="comidas" role="tabpanel">
-        <div class="category-intro"><span class="category-number">01</span><div><p class="category-kicker">Para começar o dia</p><h3>Mistos <em>da casa</em></h3></div><span class="category-rule"></span></div>
+        <div class="category-intro" id="categoria-mistos" data-category="Mistos da casa"><span class="category-number">01</span><div><p class="category-kicker">Para começar o dia</p><h3>Mistos <em>da casa</em></h3></div><span class="category-rule"></span></div>
         <div class="menu-grid">
           <article class="menu-card" data-image="01_Misto_EG.jpg"><div class="menu-card-head"><h4>Misto EG</h4><strong>R$ 29,90</strong></div><p>Pão francês, mussarela, presunto, alface, tomate, ovos e bacon.</p></article>
           <article class="menu-card featured" data-image="02_Burger_da_Casa.jpg"><div class="menu-card-head"><h4>Burger da casa</h4><strong>R$ 39,90</strong></div><p>Pão francês, hambúrguer, mussarela, presunto, bacon, tomate, alface e ovos.</p></article>
@@ -75,7 +113,7 @@
           <article class="menu-card" data-image="17_Misto_Pao_Mussarela_e_Presunto.jpg"><div class="menu-card-head"><h4>Misto com presunto</h4><strong>R$ 13,90</strong></div><p>Pão francês, mussarela e presunto.</p></article>
           <article class="menu-card" data-image="18_Misto_Pao_Ovo_e_Mussarela.jpg"><div class="menu-card-head"><h4>Misto com ovo e mussarela</h4><strong>R$ 12,90</strong></div><p>Pão francês, ovo e mussarela.</p></article>
         </div>
-        <div class="category-intro category-gap"><span class="category-number">02</span><div><p class="category-kicker">Pães preparados na hora</p><h3>Pães <em>e lanches</em></h3></div><span class="category-rule"></span></div>
+        <div class="category-intro category-gap" id="categoria-paes" data-category="Pães e lanches"><span class="category-number">02</span><div><p class="category-kicker">Pães preparados na hora</p><h3>Pães <em>e lanches</em></h3></div><span class="category-rule"></span></div>
         <div class="menu-grid">
           <article class="menu-card" data-image="06_Pao_Frito_com_Margarina.jpg"><div class="menu-card-head"><h4>Pão na chapa</h4><strong>R$ 5,90</strong></div><p>Pão francês preparado na chapa com margarina.</p></article>
           <article class="menu-card" data-image="07_Pao_com_Ovo_Mexido.jpg"><div class="menu-card-head"><h4>Pão com ovo mexido</h4><strong>R$ 11,90</strong></div><p>Pão francês e 3 ovos.</p></article>
@@ -83,29 +121,29 @@
           <article class="menu-card" data-image="09_Pao_Paulista.jpg"><div class="menu-card-head"><h4>Pão paulista</h4><strong>R$ 12,90</strong></div><p>Pão francês e catupiry.</p></article>
           <article class="menu-card" data-image="10_Bauru.jpg"><div class="menu-card-head"><h4>Bauru</h4><strong>R$ 13,90</strong></div><p>Pão fatiado, presunto e queijo.</p></article>
         </div>
-        <div class="category-intro category-gap"><span class="category-number">03</span><div><p class="category-kicker">Preparados na hora</p><h3>Ovos <em>e omeletes</em></h3></div><span class="category-rule"></span></div>
+        <div class="category-intro category-gap" id="categoria-ovos" data-category="Ovos e omeletes"><span class="category-number">03</span><div><p class="category-kicker">Preparados na hora</p><h3>Ovos <em>e omeletes</em></h3></div><span class="category-rule"></span></div>
         <div class="menu-grid">
           <article class="menu-card" data-image="11_Ovo_Mexido.jpg"><div class="menu-card-head"><h4>Ovo mexido</h4><strong>R$ 8,90</strong></div><p>Porção com 3 ovos.</p></article>
           <article class="menu-card" data-image="12_Omelete_G.jpg"><div class="menu-card-head"><h4>Omelete G</h4><strong>R$ 13,90</strong></div><p>Omelete com 3 ovos.</p></article>
           <article class="menu-card" data-image="13_Omelete_GG.jpg"><div class="menu-card-head"><h4>Omelete GG</h4><strong>R$ 19,90</strong></div><p>Omelete com 6 ovos.</p></article>
         </div>
-        <div class="category-intro category-gap"><span class="category-number">04</span><div><p class="category-kicker">Sabor de casa para compartilhar</p><h3>Quitandas <em>do dia</em></h3></div><span class="category-rule"></span></div>
+        <div class="category-intro category-gap" id="categoria-quitandas" data-category="Quitandas do dia"><span class="category-number">04</span><div><p class="category-kicker">Sabor de casa para compartilhar</p><h3>Quitandas <em>do dia</em></h3></div><span class="category-rule"></span></div>
         <div class="menu-grid single-feature"><article class="menu-card featured" data-image="19_Refeicao_Quintanda.jpg"><div class="menu-card-head"><h4>Quitandas</h4><strong>R$ 69,90</strong></div><p>Assortimento de pães e salgados para aproveitar aqui ou levar.</p></article></div>
-        <div class="category-intro category-gap"><span class="category-number">05</span><div><p class="category-kicker">Personalize seu pedido</p><h3>Adicionais <em>da casa</em></h3></div><span class="category-rule"></span></div>
+        <div class="category-intro category-gap" id="categoria-adicionais" data-category="Adicionais da casa"><span class="category-number">05</span><div><p class="category-kicker">Personalize seu pedido</p><h3>Adicionais <em>da casa</em></h3></div><span class="category-rule"></span></div>
         <div class="menu-grid add-on-grid">
           <article class="menu-card" data-image="20_Bacon.jpg"><div class="menu-card-head"><h4>Bacon</h4><strong>R$ 5,00</strong></div></article><article class="menu-card" data-image="21_Salada.jpg"><div class="menu-card-head"><h4>Salada</h4><strong>R$ 1,50</strong></div></article><article class="menu-card" data-image="22_Presunto.jpg"><div class="menu-card-head"><h4>Presunto</h4><strong>R$ 4,00</strong></div></article><article class="menu-card" data-image="23_Mussarela.jpg"><div class="menu-card-head"><h4>Mussarela</h4><strong>R$ 4,50</strong></div></article><article class="menu-card" data-image="24_Mortadela.jpg"><div class="menu-card-head"><h4>Mortadela</h4><strong>R$ 4,00</strong></div></article><article class="menu-card" data-image="25_Ovo_Frito.jpg"><div class="menu-card-head"><h4>Ovo frito</h4><strong>R$ 3,00</strong></div></article><article class="menu-card" data-image="26_Carne_de_Hamburguer.jpg"><div class="menu-card-head"><h4>Carne de hambúrguer</h4><strong>R$ 8,99</strong></div></article><article class="menu-card" data-image="27_Ovo_Mexido_3_Unidades.jpg"><div class="menu-card-head"><h4>Ovo mexido — 3 un.</h4><strong>R$ 8,90</strong></div></article>
         </div>
       </div>
       <div class="menu-panel" id="bebidas" role="tabpanel" hidden>
-        <div class="category-intro"><span class="category-number">01</span><div><p class="category-kicker">Quentes e aconchegantes</p><h3>Cafés <em>da casa</em></h3></div><span class="category-rule"></span></div>
+        <div class="category-intro" id="categoria-cafes" data-category="Cafés da casa"><span class="category-number">01</span><div><p class="category-kicker">Quentes e aconchegantes</p><h3>Cafés <em>da casa</em></h3></div><span class="category-rule"></span></div>
         <div class="menu-grid">
           <article class="menu-card" data-image="28_Cafe_Preto_P.jpg"><div class="menu-card-head"><h4>Café preto P</h4><strong>R$ 3,99</strong></div><p>Com ou sem açúcar.</p></article><article class="menu-card" data-image="29_Cafe_Preto_G.jpg"><div class="menu-card-head"><h4>Café preto G</h4><strong>R$ 6,99</strong></div><p>Com ou sem açúcar.</p></article><article class="menu-card" data-image="30_Cafe_com_Leite_P.jpg"><div class="menu-card-head"><h4>Café com leite P</h4><strong>R$ 7,99</strong></div></article><article class="menu-card" data-image="31_Cafe_com_Leite_G.jpg"><div class="menu-card-head"><h4>Café com leite G</h4><strong>R$ 11,99</strong></div></article><article class="menu-card" data-image="32_Cafe_Expresso_P.jpg"><div class="menu-card-head"><h4>Café expresso P</h4><strong>R$ 8,99</strong></div></article><article class="menu-card" data-image="33_Cafe_Expresso_G.jpg"><div class="menu-card-head"><h4>Café expresso G</h4><strong>R$ 14,50</strong></div></article><article class="menu-card" data-image="34_Achocolatado_200_ml.jpg"><div class="menu-card-head"><h4>Achocolatado 200ml</h4><strong>R$ 9,90</strong></div></article>
         </div>
-        <div class="category-intro category-gap"><span class="category-number">02</span><div><p class="category-kicker">Fresquinhos do dia</p><h3>Sucos <em>naturais</em></h3></div><span class="category-rule"></span></div>
+        <div class="category-intro category-gap" id="categoria-sucos" data-category="Sucos naturais"><span class="category-number">02</span><div><p class="category-kicker">Fresquinhos do dia</p><h3>Sucos <em>naturais</em></h3></div><span class="category-rule"></span></div>
         <div class="menu-grid">
           <article class="menu-card" data-image="35_Suco_Natural_Copo.jpg"><div class="menu-card-head"><h4>Suco natural — copo</h4><strong>R$ 12,90</strong></div></article><article class="menu-card" data-image="36_Suco_Natural_Jarra_750_ml.jpg"><div class="menu-card-head"><h4>Suco natural — jarra 750ml</h4><strong>R$ 19,90</strong></div></article><article class="menu-card" data-image="37_Copo_de_Gelo_e_Limao.jpg"><div class="menu-card-head"><h4>Copo de gelo/limão</h4><strong>R$ 3,50</strong></div></article>
         </div>
-        <div class="category-intro category-gap"><span class="category-number">03</span><div><p class="category-kicker">Mais cremosos</p><h3>Cappuccinos <em>especiais</em></h3></div><span class="category-rule"></span></div>
+        <div class="category-intro category-gap" id="categoria-cappuccinos" data-category="Cappuccinos especiais"><span class="category-number">03</span><div><p class="category-kicker">Mais cremosos</p><h3>Cappuccinos <em>especiais</em></h3></div><span class="category-rule"></span></div>
         <div class="menu-grid">
           <article class="menu-card" data-image="38_Cappuccino_Tradicional.jpg"><div class="menu-card-head"><h4>Cappuccino tradicional</h4><strong>R$ 15,90</strong></div></article><article class="menu-card" data-image="39_Cappuccino_Extra_Forte_sem_Acucar.jpg"><div class="menu-card-head"><h4>Cappuccino extra forte s/ açúcar</h4><strong>R$ 18,90</strong></div></article><article class="menu-card" data-image="40_Cappuccino_Gelado_com_ou_sem_Acucar.jpg"><div class="menu-card-head"><h4>Cappuccino gelado c/ ou s/ açúcar</h4><strong>R$ 15,90</strong></div></article><article class="menu-card" data-image="41_Cappuccino_com_Chantilly.jpg"><div class="menu-card-head"><h4>Cappuccino com chantilly</h4><strong>R$ 18,99</strong></div></article><article class="menu-card" data-image="42_Adicional_de_Chantilly.jpg"><div class="menu-card-head"><h4>Adicional de chantilly</h4><strong>R$ 3,00</strong></div></article><article class="menu-card" data-image="43_Canela_Opcional.jpg"><div class="menu-card-head"><h4>Canela opcional</h4><strong>Inclusa</strong></div></article>
         </div>
@@ -114,6 +152,16 @@
 
     <section class="hours section-wrap" id="horarios"><div class="hours-card"><div class="hours-copy"><p class="eyebrow"><span></span> Passe por aqui</p><h2>Tem sempre um bom<br /><em>motivo para visitar.</em></h2><p>Venha tomar um café, encontrar alguém especial ou levar um pouco do nosso sabor para casa.</p><a class="button button-light" href="https://pacheco-panificadora-rv.vercel.app/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcAU3ejRleHRuA2FlbQIxMQBwZG9mAnNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABp5e6lcitPYUAvgbhPsDAEwAUFi5XFnQNMe1_UxRua2xAWM_Y7ojwezhUGCdb_aem_lIDKFXQCOZDpMH0dSP8Oxw" target="_blank" rel="noopener">Saiba mais</a></div><div class="schedule"><div class="schedule-label">Horário de funcionamento</div><div class="day-row"><span>Segunda a sábado</span><b>6:00 — 20:00</b></div><div class="day-row"><span>Domingo</span><b>5:30 — 12:00</b></div><div class="schedule-stamp">PACHECO<br /><small>desde cedo com você</small></div></div></div></section>
   </main>
+  <div class="product-modal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-backdrop" data-modal-close></div>
+    <div class="modal-card" role="document">
+      <button class="modal-close" type="button" aria-label="Fechar detalhes" data-modal-close>Fechar</button>
+      <div class="modal-image-wrap"><img id="modal-image" src="" alt="" /></div>
+      <div class="modal-copy"><p class="modal-kicker">Detalhes do produto</p><h2 id="modal-title"></h2><strong id="modal-price"></strong><p id="modal-description"></p><div class="modal-suggestion" id="modal-suggestion"></div></div>
+    </div>
+  </div>
+  <button class="back-top" id="back-top" type="button" aria-label="Voltar ao topo">Topo</button>
+
   <footer class="footer"><div class="footer-brand"><img src="logo.jpg" alt="" /><span>Pacheco Panificadora</span></div><p>Um sabor que faz parte do seu dia.</p><span class="footer-copy">2026 Pacheco Panificadora</span></footer>
 </body>
 </html>
